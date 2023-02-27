@@ -31,6 +31,20 @@ services:
     ports:
       - '6000:27017'
 
+  backend:
+    build: ./backend
+    container_name: backend
+    env_file:
+      - ./.env
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app/
+    depends_on:
+      - minio
+      - mongo
+
 volumes:
   mongo:
   minio_data:
