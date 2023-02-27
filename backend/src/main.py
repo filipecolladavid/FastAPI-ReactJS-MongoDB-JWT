@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.config.settings import settings
 from src.config.database import startDB
 
-from src.routes import auth
+from src.routes import auth, user
 
 app = FastAPI()
 
@@ -28,6 +28,7 @@ async def start_dependencies():
 
 
 app.include_router(auth.router, tags=['Auth'], prefix='/api/auth')
+app.include_router(user.router, tags=['Users'], prefix='/api/users')
 
 
 @app.get("/api/healthchecker")
