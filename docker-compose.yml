@@ -1,0 +1,35 @@
+version: '3'
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    env_file:
+      - ./.env
+    ports:
+      - 9000:9000
+    # volumes:
+    #   - ./tmp/api/object:/data
+    command: minio server --console-address ":9001" /data 
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    volumes:
+      - minio_data:/data
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    env_file:
+      - ./.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - mongo:/data/db
+    ports:
+      - '6000:27017'
+
+volumes:
+  mongo:
+  minio_data:
