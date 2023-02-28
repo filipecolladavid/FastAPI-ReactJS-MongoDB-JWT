@@ -7,36 +7,35 @@ import LoginForm from "./LoginForm";
 export const BASEURL = "http://0.0.0.0:8000/api/";
 
 function App() {
-  const [register, setRegister] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [submited, setSubmited] = useState(false);
-  const [error, setError] = useState(null);
+  const [register, setRegister] = useState(true);
+  const [auth, setAuth] = useState(false);
+  const [response, setResponse] = useState(null);
 
   return (
-    <Container style={{ width: "20%" }}>
-      {loading ? (
+    <Container style={{ width: "30%" }}>
+      {auth ? (
+        <>Authenticated</>
+      ) : loading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
-      ) : submited ? (
-        !error ? (
-          <>Valid</>
-        ) : (
-          <>Invalid</>
-        )
       ) : register ? (
         <RegisterForm
           setRegister={setRegister}
           setLoading={setLoading}
-          setError={setError}
-          setSubmited={setSubmited}
+          setResponse={setResponse}
         />
       ) : (
-        <LoginForm
-          setRegister={setRegister}
-          setLoading={setLoading}
-          setError={setError}
-        />
+        <>
+          <LoginForm
+            setRegister={setRegister}
+            setLoading={setLoading}
+            setResponse={setResponse}
+            setAuth={setAuth}
+          />
+          {response && <>{response}</>}
+        </>
       )}
     </Container>
   );

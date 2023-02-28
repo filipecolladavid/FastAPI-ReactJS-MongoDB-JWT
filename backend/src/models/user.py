@@ -1,16 +1,19 @@
 from datetime import datetime
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
-from beanie import Document, Indexed
+from beanie import Document
+from src import utils
 
 class Register(BaseModel):
     username: str
-    email: EmailStr
+    email: str
     password: str
+
 
 class Login(BaseModel):
     username: str
     password: str
+
 
 class UserResponse(BaseModel):
     username: str
@@ -18,9 +21,11 @@ class UserResponse(BaseModel):
     pic_url: str
 
 # This is the model that will be saved to the database
+
+
 class User(Document):
     username: str
-    email: str       
-    password: str   
-    created_at: Optional[datetime] =  None         
+    email: str
+    password: str
+    created_at: Optional[datetime] = None
     pic_url: Optional[str] = None

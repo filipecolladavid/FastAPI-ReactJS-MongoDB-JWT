@@ -18,11 +18,19 @@ REFRESH_TOKEN_EXPIRES_IN = settings.REFRESH_TOKEN_EXPIRES_IN
 @router.post('/register', status_code=status.HTTP_201_CREATED, response_model=UserResponse)
 async def create_user(credentials: Register):
 
+    if not utils.is_valid_email(credentials.email):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Invalid email'
+        )
+
     user_exists = await User.find_one(User.username == credentials.username)
     email_exists = await User.find_one(User.email == credentials.email)
     if user_exists or email_exists:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT,
-                            detail='Account already exists')
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail='Account already exists'
+        )
 
     new_user = User(
         username=credentials.username,
@@ -49,11 +57,15 @@ async def login(credentials: Login, response: Response, Authorize: AuthJWT = Dep
 
     if not user:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail='User not found')
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='User not found'
+        )
 
     if not utils.verify_password(credentials.password, user.password):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail='Incorrect username or password')
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Incorrect username or password'
+        )
 
     # Create access token
 
