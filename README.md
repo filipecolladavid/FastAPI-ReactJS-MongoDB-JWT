@@ -1,6 +1,6 @@
 # Template: FastAPI - ReactJS - MongoDB with JWT Authentication  
 
-Template for starting a project with FARM stack.
+Template for starting a project with FARM stack. Dockerized, ready for deployment
 
 
 ## Deployment
