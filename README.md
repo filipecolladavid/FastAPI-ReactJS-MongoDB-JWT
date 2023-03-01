@@ -9,7 +9,7 @@ Template for starting a project with FARM stack. Dockerized, ready for deploymen
 ```bash
   npm install
 ```
-2. Start the container
+2. Go back to the root of the project and start the container
 
 ```bash
   docker-compose up
