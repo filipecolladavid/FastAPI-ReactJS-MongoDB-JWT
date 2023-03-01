@@ -74,15 +74,17 @@ const RegisterForm = ({ setRegister, setLoading, setResponse }) => {
         />
         <Form.Control.Feedback type="invalid">Invalid username</Form.Control.Feedback>
       </Form.Group>
-      <Form.Label>Email</Form.Label>
-      <Form.Control
-        placeholder="Email"
-        onChange={onFormChange}
-        name="email"
-        required
-        isInvalid={mailInvalid || usernameNotAvail}
-      />
-      <Form.Control.Feedback type="invalid">Invalid email</Form.Control.Feedback>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          placeholder="Email"
+          onChange={onFormChange}
+          name="email"
+          required
+          isInvalid={mailInvalid || usernameNotAvail}
+        />
+        <Form.Control.Feedback type="invalid">Invalid email</Form.Control.Feedback>
+      </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={onFormChange} name="password" required />
