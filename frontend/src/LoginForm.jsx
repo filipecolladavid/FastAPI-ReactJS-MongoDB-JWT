@@ -89,7 +89,7 @@ const LoginForm = ({ setRegister, setLoading, setResponse, setAuth }) => {
         <Form.Control.Feedback type="invalid">{errorMessage}</Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb3 d-flex justify-content-between">
-        <Button onClick={() => setRegister(false)}>Don't have an account</Button>
+        <Button onClick={() => setRegister(true)}>Don't have an account</Button>
         <Button type="submit" variant="success">Login</Button>
       </Form.Group>
       <Form.Text>{errorMessage}</Form.Text>
