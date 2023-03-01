@@ -2,15 +2,20 @@
 
 Template for starting a project with FARM stack. Dockerized, ready for deployment
 
+## Development
 
-## Deployment
+1. Go to the directory where the frontend folder is located and run
 
-To deploy this project run
+```bash
+  npm install
+```
+2. Start the container
 
 ```bash
   docker-compose up
 ```
 
+Both the frontend and the backend have auto-reload enabled, open the project on your IDE of choice and start development.
 
 ## Environment Variables
 
@@ -44,6 +49,3 @@ CORS bypass for origin
 `CLIENT_ORIGIN`
 
 (See envExample)
-## Development
-
-Both backend and frontend have auto-reload enabled, so just start the container and open the project in an IDE and start development
