@@ -25,7 +25,6 @@ services:
     volumes:
       - ./backend:/app/
     depends_on:
-      - minio
       - mongo
 
   frontend:
@@ -40,7 +39,6 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
-      - minio
       - mongo
       - backend
 
